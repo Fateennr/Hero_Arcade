@@ -26,7 +26,15 @@ class Level:
                 if cell == 'P':
                     player = Player((x, y))
                     self.player1.add(player)
-             
+    
+    def scroll_x(self):
+        player1 = self.player1.sprite
+        player1_x = player1.rect.centerx
+        direction_x = player1.direction.x
+        
+        if player1_x <200:
+            self.world_shift = 4
+            player1.speed =0
                
     def run(self):
         #update tiles
@@ -34,5 +42,6 @@ class Level:
         self.tiles.draw(self.display_surface)
         
         #update player
+        self.player1.update()
         self.player1.draw(self.display_surface)
-        
+        self.scroll_x()
